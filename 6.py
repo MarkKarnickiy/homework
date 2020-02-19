@@ -5,8 +5,9 @@ day = 1
 while a < b:
     a = a + c
     c = a * 0.1
-    day = day + 1
     print('{}й - День: {}'.format(day, ("%.2f" % a)))
+    day = day + 1
+
 print(f"На {day}-й день, спортсмен достигает результата не менее {b}км.")
 
 
