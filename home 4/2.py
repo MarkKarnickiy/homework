@@ -1,2 +1,3 @@
-list_ = [1,2,3,4,5,6,7,8,9]
-print([el + el for el in list_])
+list_ = [300, 2, 12, 44, 1, 1, 4, 10, 7, 1, 78, 123, 55]
+print([list_[el] for el in range(1, len(list_)) if list_[el] > list_[el-1]])
+
