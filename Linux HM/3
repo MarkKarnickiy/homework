@@ -1,0 +1,39 @@
+1
+Создаем файл (в моем случае file1. Подгоняем файл как указано в задаче. Чтобы выполнить поставленную
+задачу пишем:
+    sed '/^$/d' file1 | tr [a-z] [A-Z]. Готово
+
+2
+Добавим строки в /etc/syslog-ng/syslog-ng.conf
+destination authlog { file("/var/log/auth.log"); };
+filter f_auth { match('Authentication failure'); };
+log { source(src); filter(f_auth); destination(authlog); };
+3
+Создаем скрипт vim script, в него пишем:
+mkdir -p $dir/201{0..7}/{1..12}/
+touch $dir/201{0..7}/{1..12}/file_{0..9}.txt
+Я не разобрался как сделать запись в каждый файлБ прошу подсказать
+Для выполнения скрипта дать права на выполнение chmod +x script
+4
+Выполнить условие данной задачи в crontab поможет команда
+ * 1 * * * du -sm /home/* > /var/log/user_data_size.log
+
+ 5
+ #!/bin/bash
+dir="$1"
+script=`echo $0 | xargs basename`
+        for file_name in $dir/* ;
+        do
+        if [[ `basename $name_file` != 'ownersort.sh' ]] ; then
+                user_name=`ls -la $file_name | awk {'print $3; '} | sort | uniq | xargs echo`
+                mkdir -p $dir/$user_name && chown -vR $user_name $dir
+                dirname=($dir/$user_name)
+                cp -pv $name_file $dirname
+                rm -v $name_file
+                echo
+                echo "Done"
+         else
+         echo
+         echo "System error. Skip this file"
+        fi
+done
